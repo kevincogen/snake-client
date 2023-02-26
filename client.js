@@ -15,33 +15,28 @@ const connect = function() {
   conn.on("data", (data) => {
     console.log(data) //recieve from server
   })
-
-  //Same Callback
-  // conn.on("connect", () => {
-  //   console.log("Successfully connected to game server"); //confirm connect
-  // }, () => {
-  //   conn.write("Name: KMC"); //send intials to game (needs to be delayed if part of the same connect callback?)
-  // }, () => {
-  //   conn.write("Move: up") //move
-  // })
-
-
-  //different callbacks
-
-  // conn.on("connect", () => {
-  //   console.log("Successfully connected to game server");
-  // })
-  // conn.on("connect", () => {
-  //   conn.write("Name: KMC");
-  // })
-  // conn.on("connect", () => {
-  //   conn.write("Move: up")
-  // })
   return conn;
 };
 
-module.exports = {connect};
+const setupInput = function() {
+  const handleUserInput = function(key) {
+    if (key === '\u0003') {
+      process.exit();
+    }
+  };
+  const stdin = process.stdin;
+  stdin.setRawMode(true);
+  stdin.setEncoding("utf8");
+  stdin.resume();
+  stdin.on("data", handleUserInput);
 
+  return stdin;
+};
+
+module.exports = {connect, setupInput};
+
+
+//connect function expirements with having more than one callback in each connect event.
 // how to delay the callback
 // setTimeout(() => {
 //   conn.write("Move: up") //move
@@ -56,3 +51,23 @@ module.exports = {connect};
 //   conn.write("Move: up") //move
 // }, 1000))
 
+  //Same Callback without timout
+  // conn.on("connect", () => {
+  //   console.log("Successfully connected to game server"); //confirm connect
+  // }, () => {
+  //   conn.write("Name: KMC"); //send intials to game (needs to be delayed if part of the same connect callback?)
+  // }, () => {
+  //   conn.write("Move: up") //move
+  // })
+
+  //different callbacks no timeouts
+
+  // conn.on("connect", () => {
+  //   console.log("Successfully connected to game server");
+  // })
+  // conn.on("connect", () => {
+  //   conn.write("Name: KMC");
+  // })
+  // conn.on("connect", () => {
+  //   conn.write("Move: up")
+  // })
