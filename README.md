@@ -14,7 +14,7 @@ This game is inspired by the game classic game [Snek](https://www.taniarascia.co
 
 ## Final Product
 
-!["Snek Time"](https://ibb.co/ZSCsZF6)
+<a href="https://ibb.co/ZSCsZF6"><img src="https://i.ibb.co/9hjXM19/Screenshot-2023-02-27-at-10-52-07-PM.png" alt="Screenshot-2023-02-27-at-10-52-07-PM" border="0" /></a>
 
 ## Instructions
 
